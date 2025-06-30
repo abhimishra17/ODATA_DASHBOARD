@@ -1,0 +1,12 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+          xmlns="sap.m"
+          controllerName="com.asint.interns.project2.controller.Detail">
+  <Page title="Product Detail">
+    <content>
+      <VBox class="sapUiSmallMargin">
+        <Text text="{ProductName}" class="sapUiLargeText"/>
+        <Text text="{UnitPrice}" class="sapUiLargeText"/>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

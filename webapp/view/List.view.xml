@@ -1,0 +1,100 @@
+<mvc:View
+  controllerName="com.asint.interns.project2.controller.List"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+  xmlns:smartTable="sap.ui.comp.smarttable"
+  xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+  xmlns:objectPage="sap.uxap"
+  xmlns="sap.m">
+
+  <objectPage:ObjectPageLayout
+    id="objectPageLayout"
+    showTitleInHeaderContent="true"
+    enableLazyLoading="false">
+
+    <!-- Header Title Section -->
+    <objectPage:headerTitle>
+      <objectPage:ObjectPageDynamicHeaderTitle>
+        <objectPage:heading>
+          <Title text="{i18n>dashboardTitle}" level="H1"/>
+        </objectPage:heading>
+        <objectPage:actions>
+          <Button
+            text="{i18n>btnPieChart}"
+            icon="sap-icon://pie-chart"
+            press=".onNavToChart" />
+          <Button
+            text="{i18n>btnLineChart}"
+            icon="sap-icon://line-chart"
+            press=".onNavToLineChart" />
+          <Button
+            text="{i18n>btnBarChart}"
+            icon="sap-icon://horizontal-bar-chart"
+            press=".onNavToBarChart" />
+        </objectPage:actions>
+      </objectPage:ObjectPageDynamicHeaderTitle>
+    </objectPage:headerTitle>
+
+    <!-- First Section: Filters -->
+    <objectPage:sections>
+      <objectPage:ObjectPageSection title="{i18n>sectionSearchFilter}">
+        <objectPage:subSections>
+          <objectPage:ObjectPageSubSection>
+            <VBox class="sapUiSmallMargin">
+              <smartFilterBar:SmartFilterBar
+                id="productFilterBar"
+                entitySet="Products"
+                showFilterConfiguration="true"
+                showGoOnFB="true"
+                liveMode="false"
+                useToolbar="true">
+
+                <smartFilterBar:controlConfiguration>
+
+                  <!-- <smartFilterBar:ControlConfiguration
+                    key="ProductID"
+                    label="{i18n>filterProductId}"
+                    visibleInAdvancedArea="true"/> -->
+
+                  <smartFilterBar:ControlConfiguration
+                    key="ProductName"
+                    label="{i18n>filterProductName}"
+                    visibleInAdvancedArea="true"/>
+                    <smartFilterBar:ControlConfiguration
+                    key="UnitPrice"
+                    label="{i18n>filterUnitPrice}"
+                    visibleInAdvancedArea="true"/>
+
+                </smartFilterBar:controlConfiguration>
+              </smartFilterBar:SmartFilterBar>
+            </VBox>
+          </objectPage:ObjectPageSubSection>
+        </objectPage:subSections>
+      </objectPage:ObjectPageSection>
+
+      <!-- Second Section: Table -->
+      <objectPage:ObjectPageSection title="{i18n>sectionProductOverview}">
+        <objectPage:subSections>
+          <objectPage:ObjectPageSubSection>
+            <VBox class="sapUiSmallMargin">
+              <smartTable:SmartTable
+                id="productSmartTable"
+                initiallyVisibleFields="ProductName,UnitPrice"
+                entitySet="Products"
+                tableType="ResponsiveTable"
+                smartFilterId="productFilterBar"
+                useExportToExcel="true"
+                useTablePersonalisation="true"
+                useVariantManagement="true"
+                header="{i18n>tableHeader}"
+                showRowCount="true"
+                persistencyKey="ProductsSmartTable"
+                enableAutoBinding="true"/>
+            </VBox>
+          </objectPage:ObjectPageSubSection>
+        </objectPage:subSections>
+      </objectPage:ObjectPageSection>
+    </objectPage:sections>
+
+  </objectPage:ObjectPageLayout>
+</mvc:View>

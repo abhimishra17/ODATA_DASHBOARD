@@ -1,0 +1,130 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "com.asint.interns.project2",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "dataSources": {
+      "mainService": {
+        "uri": "/v2/northwind/northwind.svc/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0",
+          "localUri": "localService/mainService/metadata.xml"
+        }
+      }
+    },
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.17.6"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "rootView": {
+      "viewName": "com.asint.interns.project2.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    },
+    "dependencies": {
+      "minUI5Version": "1.136.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.comp": {},
+        "sap.ui.table": {},
+        "sap.ui.layout": {},
+        "sap.viz": {}
+      }
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.asint.interns.project2.i18n.i18n"
+        }
+      },
+      "": {
+        "type": "sap.ui.model.odata.v2.ODataModel",
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "synchronizationMode": "None",
+          "operationMode": "Server"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "com.asint.interns.project2.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "bypassed": {
+          "target": "notFound"
+        }
+      },
+      "routes": [
+        
+        {
+          "pattern": "",
+          "name": "RouteList",
+          "target": "List"
+        },
+        {
+          "pattern": "chart",
+          "name": "RouteChart",
+          "target": "Chart"
+        },
+        {
+          "pattern": "line",
+          "name": "RouteLineChart",
+          "target": "LineChart"
+        },
+        {
+          "pattern": "bar",
+          "name": "RouteBarChart",
+          "target": "BarChart"
+        }
+      ],
+      "targets": {
+        
+        "List": {
+          "viewName": "List"
+        },
+        "Chart": {
+          "viewName": "Chart"
+        },
+        "LineChart": {
+          "viewName": "LineChart"
+        },
+        "BarChart": {
+          "viewName": "BarChart"
+        }
+      }
+    }
+  }
+}
